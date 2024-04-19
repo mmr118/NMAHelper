@@ -25,6 +25,20 @@ public struct StringifyMacro: ExpressionMacro {
     }
 }
 
+
+public struct PreviewTimeMacro: DeclarationMacro {
+
+    public static func expansion(of node: some FreestandingMacroExpansionSyntax, in context: some MacroExpansionContext) throws -> [DeclSyntax] {
+
+        guard let args = node.argumentList.first else { fatalError("missing arguments") }
+
+        return args
+    }
+    
+
+
+}
+
 @main
 struct NMAHelperPlugin: CompilerPlugin {
     let providingMacros: [Macro.Type] = [
